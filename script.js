@@ -6,8 +6,8 @@ const printOnConsole = (element) => {
 const addFour = (element) => {
     return element + 4;
 }
-const sum = (current) => {
-    return current += current;
+const sum = (acc, current) => {
+    return acc + current;
 }
 
 const isOdd = (element) => {
@@ -48,7 +48,7 @@ const newForEach = (array, callBack) => {
         callBack(array[cont]);
     }
 }
-
+newForEach(testeArr1, printOnConsole);
 
 let testeArr2 = [1,'a',3, 7, 9];
 const newFill = (array, value, start) => {
@@ -58,7 +58,7 @@ const newFill = (array, value, start) => {
     
     return array;
 }
-
+newFill(testeArr2, 'Gotcha', 2);
 
 let testeArr3 = [1,2,3,4];
 const newMap = (array, callBack) => {
@@ -70,7 +70,7 @@ const newMap = (array, callBack) => {
     
     return outputArr;
 }
-
+newMap(testeArr3, addFour);
 
 let testeArr4 = [6,4,2,1,8,10,-12];
 const newSome = (array, callBack) => {
@@ -81,10 +81,10 @@ const newSome = (array, callBack) => {
             output = true;
         }
     }
-   
+
     return output;
 }
-
+newSome(testeArr4, isOdd);
 
 let testeArr5 = [3,2,1,5,5,8];
 const newFind = (array, callBack) => {
@@ -95,10 +95,10 @@ const newFind = (array, callBack) => {
             output = item;
         }
     }
-
+  
     return output;
 }
-
+newFind(testeArr5, biggerThanSeven);
 
 let testeArr6 = [7,4,1,8,2];
 const newFindIndex = (array, callBack)=>{
@@ -107,12 +107,12 @@ const newFindIndex = (array, callBack)=>{
         let item = array[cont];
         if(callBack(item)){
             output = cont;
-            
+    
             return output;
         }
     }
 }
-
+newFindIndex(testeArr6, isPrime);
 
 let testeArr7 = [2,2,1,2,2];
 const newEvery = (array,callBack)=>{
@@ -123,10 +123,10 @@ const newEvery = (array,callBack)=>{
             output = false;
         }
     }
-    
+
     return output;
 }
-
+newEvery(testeArr7, isEven);
 
 let testeArr8 = [3,15,6,25,300];
 const newFilter = (array,callBack)=>{
@@ -140,7 +140,7 @@ const newFilter = (array,callBack)=>{
 
     return outputArr;
 }
-
+newFilter(testeArr8, isDivisibleByFive);
 
 const newConcat = (array)=>{
     
@@ -155,10 +155,10 @@ const newIncludes = (array, element)=>{
             output = true;
         }
     }
-
+ 
     return output;
 }
-
+newIncludes(testeArr9, 0);
 
 let testeArr10 = [1,4,8,16]
 const newIndexOf = (array, element, start)=>{
@@ -179,10 +179,10 @@ const newIndexOf = (array, element, start)=>{
             output =  cont;
         }
     }
-    
+
     return output;
 }
-
+newIndexOf(testeArr10, 8, 1);
 
 let testeArr11 = ['Saudades', 'do', 'Q1']
 const newJoin = (array, separator)=>{
@@ -195,21 +195,20 @@ const newJoin = (array, separator)=>{
         }
         output += item
     }
-    
+
     return output;
 }
+newJoin(testeArr11, ' - ');
 
-
-// let testeArr12 = [2];
+// let testeArr12 = [1,2,3];
 // const newReduce = (array, callBack)=>{
 //     let output = 0;
 //     for(let cont = 0; cont < array.length; cont++){
-//         output = callBack(array[cont], array[cont+1]);
+//         output += callBack(array[cont]);
 //     }
 //     console.log(output)
 // }
 // newReduce(testeArr12, sum);
-
 //EXTRAS
 // const newSlice = (array)=>{
 
