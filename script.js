@@ -1,6 +1,6 @@
 //Funções CallBack
 const printOrdinals = (element) => {
-    return `${element}º`
+    return `${element}º`;
 }
 
 const addFour = (element) => {
@@ -24,13 +24,6 @@ const biggerThanSeven = (element) =>{
     return element > 7;
 }
 
-const moreThanTenChars = (element,array) => {
-    return element.length > 10;
-}
-const lessThanFiveChars = (element) => {
-    return element.length > 10;
-}
-
 const isPrime = (element) => {
     var start = 2;
     while (start <= Math.sqrt(element)) {
@@ -50,6 +43,7 @@ const newForEach = (array, callBack) => {
 }
 newForEach(testeArr1, printOrdinals);
 
+
 let testeArr2 = [1,'a',3, 7, 9];
 const newFill = (array, value, start) => {
     for(let cont = start; cont < array.length; cont++){
@@ -59,6 +53,7 @@ const newFill = (array, value, start) => {
     return array;
 }
 newFill(testeArr2, 'Gotcha', 2);
+
 
 let testeArr3 = [1,2,3,4];
 const newMap = (array, callBack) => {
@@ -71,6 +66,7 @@ const newMap = (array, callBack) => {
     return outputArr;
 }
 newMap(testeArr3, addFour);
+
 
 let testeArr4 = [6,4,2,1,8,10,-12];
 const newSome = (array, callBack) => {
@@ -86,6 +82,7 @@ const newSome = (array, callBack) => {
 }
 newSome(testeArr4, isOdd);
 
+
 let testeArr5 = [3,2,1,5,5,8];
 const newFind = (array, callBack) => {
     let output = null;
@@ -99,6 +96,7 @@ const newFind = (array, callBack) => {
     return output;
 }
 newFind(testeArr5, biggerThanSeven);
+
 
 let testeArr6 = [7,4,1,8,2];
 const newFindIndex = (array, callBack)=>{
@@ -114,6 +112,7 @@ const newFindIndex = (array, callBack)=>{
 }
 newFindIndex(testeArr6, isPrime);
 
+
 let testeArr7 = [2,2,1,2,2];
 const newEvery = (array,callBack)=>{
     let output = true;
@@ -128,6 +127,7 @@ const newEvery = (array,callBack)=>{
 }
 newEvery(testeArr7, isEven);
 
+
 let testeArr8 = [3,15,6,25,300];
 const newFilter = (array,callBack)=>{
     let outputArr = [];
@@ -141,6 +141,7 @@ const newFilter = (array,callBack)=>{
     return outputArr;
 }
 newFilter(testeArr8, isDivisibleByFive);
+
 
 let alpha = ["a", "b", "c"];
 let numeric = [1, 2, 3];
@@ -162,6 +163,7 @@ const newConcat = (...elements)=>{
 }
 newConcat(alpha,numeric,testString1);
 
+
 let testeArr9 = [1,2,8,4,3,0];
 const newIncludes = (array, element)=>{
     let output = false;
@@ -175,6 +177,7 @@ const newIncludes = (array, element)=>{
     return output;
 }
 newIncludes(testeArr9, 0);
+
 
 let testeArr10 = [1,4,8,16]
 const newIndexOf = (array, element, start)=>{
@@ -200,6 +203,7 @@ const newIndexOf = (array, element, start)=>{
 }
 newIndexOf(testeArr10, 8, 1);
 
+
 let testeArr11 = ['Saudades', 'do', 'Q1']
 const newJoin = (array, separator)=>{
     let output = "";
@@ -211,16 +215,33 @@ const newJoin = (array, separator)=>{
         }
         output += item
     }
-
+    
     return output;
 }
 newJoin(testeArr11, ' - ');
 
-// let testeArr12 = [1,2,3];
-// 
-// }
-// newReduce(testeArr12, sum);
 
+let testeArr12 = [1,2,3];
+const newReduce = (array, callBack, initialValue) => {
+    let output = initialValue;
+
+    for(let cont = 0; cont < array.length; cont++){
+        let item = array[cont];
+        output = callBack(output,item);
+    }
+
+    if(initialValue === undefined){
+        output = 0;
+        for(let cont = 0; cont < array.length; cont++){
+            let item = array[cont];
+            output = callBack(output,item);
+        }
+    }
+    
+    return output;
+}
+newReduce(testeArr12, sum);
+newReduce(testeArr12, sum, 3);
 
 //EXTRAS
 // const newSlice = (array)=>{
