@@ -47,39 +47,20 @@ newForEach(testeArr1, printOrdinals);
 
 let testeArr2 = [1,'a',3, 7, 9];
 let test = [1, 2, 3];
-const newFill = (array, value, start, end) => {
-    if(start === undefined && end === undefined){
-        for(let cont = 0; cont < array.length; cont++){
-            array[cont] = value;
-        }
-        console.log('funfa1')
-    }
-    else if(start !== undefined && end === undefined){
-        if(start<0){
-            start = array.length + start
-        }
+const newFill = (array, value, start = 0, end = array.length) => {
 
-        for(let cont = start; cont < array.length; cont++){
-            array[cont] = value;
-        }
-
-    }
-    else if(start !== undefined && end !== undefined){
         if(start < 0){
             start = array.length + start
         }
         if(end < 0){
             end = array.length + end
-        }
+        }   
 
         for(let cont = start; cont < end; cont++){
             array[cont] = value;
         }
-        
-    }
-    
-    
-    return array;
+
+        return array;
 }
 newFill(testeArr2, 'Gotcha',2,4);
 newFill(test, 'Gotcha',-3,-2);
@@ -115,15 +96,15 @@ newSome(testeArr4, isOdd);
 
 let testeArr5 = [3,2,1,5,5,8];
 const newFind = (array, callBack) => {
-    let output = null;
+    
     for(let cont = 0; cont < array.length; cont++){
         let item = array[cont];
-        if(callBack(item)){
+        if(callBack(item, cont, array)){
             output = item;
+            return output;
         }
     }
   
-    return output;
 }
 newFind(testeArr5, biggerThanSeven);
 
@@ -134,7 +115,7 @@ const newFindIndex = (array, callBack)=>{
     let output = -1;
     for(let cont = 0; cont < array.length; cont++){
         let item = array[cont];
-        if(callBack(item)){
+        if(callBack(item, cont, array)){
             output = cont;
     
             return output;
@@ -152,22 +133,21 @@ const newEvery = (array,callBack)=>{
     let output = true;
     for(let cont = 0; cont < array.length; cont++){
         let item = array[cont];
-        if(!callBack(item)){
+        if(!callBack(item, cont, array)){
             output = false;
         }
     }
-
+    
     return output;
 }
 newEvery(testeArr7, isEven);
-
 
 let testeArr8 = [3,15,6,25,300];
 const newFilter = (array,callBack)=>{
     let outputArr = [];
     for(let cont = 0; cont < array.length; cont++){
         let item = array[cont];
-        if(callBack(item)){
+        if(callBack(item, cont, array)){
             outputArr.push(item);
         }
     }
@@ -180,7 +160,7 @@ newFilter(testeArr8, isDivisibleByFive);
 let alpha = ["a", "b", "c"];
 let numeric = [1, 2, 3];
 let testString1 =  "Hello Q2";
-const newConcat = (...elements)=>{
+const newConcat = (...elements) => {
     let output = [];
 
     for(let cont = 0; cont < elements.length; cont++){
@@ -197,46 +177,48 @@ const newConcat = (...elements)=>{
 }
 newConcat(alpha,numeric,testString1);
 
-
-let testeArr9 = [1,2,8,4,3,0];
-const newIncludes = (array, element)=>{
+//parametro opcional
+let testeArr9 = [1,0,8,4,3,5];
+const newIncludes = (array, element, start = 0)=>{
     let output = false;
-    for(let cont = 0; cont < array.length; cont++){
+
+    for(let cont = start; cont < array.length; cont++){
         let item = array[cont];
         if(item === element){
             output = true;
         }
     }
- 
+    
     return output;
 }
-newIncludes(testeArr9, 0);
+newIncludes(testeArr9, 0,2);
 
-
-let testeArr10 = [1,4,8,16]
-const newIndexOf = (array, element, start)=>{
+//Possibilidade de número negativo
+let testeArr10 = [1,3,8,4,16];
+const newIndexOf = (array, element, start = 0)=>{
     let output = -1;
 
-    if(start === undefined){
-        for(let cont = 0; cont < array.length; cont++){
+    if(start < 0){
+        start = array.length + start;
+
+        for(let cont = start; cont < array.length; cont++){
             let item = array[cont];
             if(item === element){
                 output =  cont;
             }
         }
     }
-
+    
     for(let cont = start; cont < array.length; cont++){
         let item = array[cont];
         if(item === element){
             output =  cont;
         }
     }
-    console.log(output)
+    
     return output;
 }
-newIndexOf(testeArr10, 16);
-console.log(testeArr10.indexOf(16))
+newIndexOf(testeArr10, 4,-4);
 
 let testeArr11 = ['Saudades', 'do', 'Q1']
 const newJoin = (array, separator)=>{
