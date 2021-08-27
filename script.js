@@ -1,6 +1,6 @@
 //Funções CallBack
-const printOnConsole = (element) => {
-    console.log(element)
+const printOrdinals = (element) => {
+    return `${element}º`
 }
 
 const addFour = (element) => {
@@ -48,7 +48,7 @@ const newForEach = (array, callBack) => {
         callBack(array[cont]);
     }
 }
-newForEach(testeArr1, printOnConsole);
+newForEach(testeArr1, printOrdinals);
 
 let testeArr2 = [1,'a',3, 7, 9];
 const newFill = (array, value, start) => {
@@ -142,9 +142,25 @@ const newFilter = (array,callBack)=>{
 }
 newFilter(testeArr8, isDivisibleByFive);
 
-const newConcat = (array)=>{
+let alpha = ["a", "b", "c"];
+let numeric = [1, 2, 3];
+let testString1 =  "Hello Q2";
+const newConcat = (...elements)=>{
+    let output = [];
+
+    for(let cont = 0; cont < elements.length; cont++){
+        let arr = elements[cont];
+
+        for(let contArr = 0; contArr < arr.length; contArr++){
+            let item = arr[contArr];
+            output.push(item);
+        }
+
+    }
     
+    return output;
 }
+newConcat(alpha,numeric,testString1);
 
 let testeArr9 = [1,2,8,4,3,0];
 const newIncludes = (array, element)=>{
@@ -201,14 +217,11 @@ const newJoin = (array, separator)=>{
 newJoin(testeArr11, ' - ');
 
 // let testeArr12 = [1,2,3];
-// const newReduce = (array, callBack)=>{
-//     let output = 0;
-//     for(let cont = 0; cont < array.length; cont++){
-//         output += callBack(array[cont]);
-//     }
-//     console.log(output)
+// 
 // }
 // newReduce(testeArr12, sum);
+
+
 //EXTRAS
 // const newSlice = (array)=>{
 
