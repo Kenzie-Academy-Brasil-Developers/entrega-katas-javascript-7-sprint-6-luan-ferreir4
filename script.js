@@ -38,28 +38,58 @@ const isPrime = (element) => {
 let testeArr1 = [1,2,3];
 const newForEach = (array, callBack) => {
     for(let cont = 0; cont < array.length; cont++){
-        callBack(array[cont]);
+        let item = array[cont]
+        callBack(item, cont, array);
     }
 }
 newForEach(testeArr1, printOrdinals);
 
 
 let testeArr2 = [1,'a',3, 7, 9];
-const newFill = (array, value, start) => {
-    for(let cont = start; cont < array.length; cont++){
-        array[cont] = value;
+let test = [1, 2, 3];
+const newFill = (array, value, start, end) => {
+    if(start === undefined && end === undefined){
+        for(let cont = 0; cont < array.length; cont++){
+            array[cont] = value;
+        }
+        console.log('funfa1')
     }
+    else if(start !== undefined && end === undefined){
+        if(start<0){
+            start = array.length + start
+        }
+
+        for(let cont = start; cont < array.length; cont++){
+            array[cont] = value;
+        }
+
+    }
+    else if(start !== undefined && end !== undefined){
+        if(start < 0){
+            start = array.length + start
+        }
+        if(end < 0){
+            end = array.length + end
+        }
+
+        for(let cont = start; cont < end; cont++){
+            array[cont] = value;
+        }
+        
+    }
+    
     
     return array;
 }
-newFill(testeArr2, 'Gotcha', 2);
-
+newFill(testeArr2, 'Gotcha',2,4);
+newFill(test, 'Gotcha',-3,-2);
 
 let testeArr3 = [1,2,3,4];
 const newMap = (array, callBack) => {
     let outputArr = [];
     for(let cont = 0; cont < array.length; cont++){
-        let result = callBack(array[cont]);
+        let item = array[cont];
+        let result = callBack(item, cont, array);
         outputArr.push(result);
     }
     
@@ -73,7 +103,7 @@ const newSome = (array, callBack) => {
     let output = false;
     for(let cont = 0; cont < array.length; cont++){
         let item = array[cont];
-        if(callBack(item)){
+        if(callBack(item, cont, array)){
             output = true;
         }
     }
@@ -99,6 +129,7 @@ newFind(testeArr5, biggerThanSeven);
 
 
 let testeArr6 = [7,4,1,8,2];
+let test2 = [4,16,8,10];
 const newFindIndex = (array, callBack)=>{
     let output = -1;
     for(let cont = 0; cont < array.length; cont++){
@@ -109,8 +140,11 @@ const newFindIndex = (array, callBack)=>{
             return output;
         }
     }
+    
+    return output;
 }
 newFindIndex(testeArr6, isPrime);
+newFindIndex(test2, isPrime);
 
 
 let testeArr7 = [2,2,1,2,2];
@@ -198,11 +232,11 @@ const newIndexOf = (array, element, start)=>{
             output =  cont;
         }
     }
-
+    console.log(output)
     return output;
 }
-newIndexOf(testeArr10, 8, 1);
-
+newIndexOf(testeArr10, 16);
+console.log(testeArr10.indexOf(16))
 
 let testeArr11 = ['Saudades', 'do', 'Q1']
 const newJoin = (array, separator)=>{
